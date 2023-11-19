@@ -55,7 +55,14 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-4 mt-3">
+                                <div class="col-sm-2 mt-3">
+                                    <label for="name_pppoe" class="form-label" style="font-weight: bold;"> Kode Name PPPOE : <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="kode_name" id="kode_name" value="<?php echo $this->M_Pelanggan->KodeNamePppoe() ?>" placeholder="Masukkan nama pelanggan..." readonly>
+                                    <div class="bg-danger">
+                                        <small class="text-white"><?php echo form_error('name_pppoe'); ?></small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 mt-3">
                                     <label for="name_pppoe" class="form-label" style="font-weight: bold;"> Name PPPOE : <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="name_pppoe" id="name_pppoe" value="" placeholder="Masukkan nama pelanggan...">
                                     <div class="bg-danger">

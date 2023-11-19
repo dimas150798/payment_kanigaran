@@ -3,7 +3,7 @@
         <div id="layoutAuthentication_content">
             <main>
 
-<div class="container-fluid">
+                <div class="container-fluid">
                     <div class="row justify-content-center">
                         <div class="col-lg-4">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -12,6 +12,8 @@
                                     <div class="logoLogin">
                                         <img src="<?php echo base_url(); ?>assets/img/logoSaja.png" alt="" width="60px">
                                         <h3>My Infly Networks</h3>
+                                        <hr>
+                                        <h4><b>Kanigaran</b></h4>
                                     </div>
                                     <!-- <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesangagal'); ?>"></div> -->
                                     <!-- <div class="notifikasiLogin">

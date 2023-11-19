@@ -182,4 +182,56 @@ class M_Pelanggan extends CI_Model
         $invoice = "lc" . $no;
         return $invoice;
     }
+
+    // Name PPPOE
+    public function KodeNamePppoe()
+    {
+        // Query untuk mendapatkan kode terakhir dari database
+        $sqlExistingCode = "SELECT MAX(name_pppoe) AS existingCode FROM client WHERE MID(name_pppoe, 4, 4)";
+        $queryExistingCode = $this->db->query($sqlExistingCode);
+
+        if ($queryExistingCode->num_rows() > 0) {
+            $dataRowExistingCode = $queryExistingCode->row();
+            $existingCode = $dataRowExistingCode->existingCode;
+        } else {
+            $existingCode = "kng0000"; // Default value jika tidak ada data
+        }
+
+        // Mengambil angka dari kode yang diperoleh dari database
+        $existingNumber = (int)substr($existingCode, 3, 4);
+
+        // Membuat kueri SQL dengan klausa WHERE
+        $sql = "SELECT MAX(MID(name_pppoe, 4, 4)) AS invoiceID 
+         FROM client 
+         WHERE MID(name_pppoe, 4, 4) = $existingNumber";
+
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0) {
+            $dataRow = $query->row();
+            $dataN = ((int)$dataRow->invoiceID) + 1;
+        } else {
+            $dataN = 1;
+        }
+
+        $no = sprintf("%'.04d", $dataN);
+
+        $invoice = "kng" . $no . '-';
+        return $invoice;
+    }
+
+    public function cekData($kode_nama)
+    {
+        // Memisahkan kode dan nama dari input
+        $kode_nama_parts = explode('-', $kode_nama);
+        $kode = $kode_nama_parts[0];
+        $nama = $kode_nama_parts[1];
+
+        // Query untuk memeriksa keberadaan data di database
+        $sql = "SELECT * FROM client WHERE MID(name_pppoe, 1, 3) = ? AND MID(name_pppoe, 5) = ?";
+        $query = $this->db->query($sql, array($kode, $nama));
+
+        // Memeriksa hasil query
+        return $query->num_rows() > 0;
+    }
 }
