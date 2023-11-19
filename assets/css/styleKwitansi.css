@@ -1,0 +1,96 @@
+.center {
+    border: 2px solid black;
+}
+
+@media print {
+
+    html,
+    body {
+        font-family: "Helvetica", Sans-Serif;
+        width: auto;
+        height: auto;
+        padding: 0px;
+        margin: 0;
+        margin-top: 0;
+        padding-left: 0;
+    }
+
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+
+    .kwitansiJudul{
+        color: black;
+        text-align: center;
+    }
+    
+    .kwitansiAlamat{
+        color: black;
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .kwitansiBody{
+        color: black;
+        font-size: 17px;
+    }
+    
+    .kwitansiPembayaran{
+        color: black;
+        font-weight: bold;
+        font-size: 17px;
+    }
+    
+    .kwitansiPenutup{
+        color: black;
+        text-align: center;
+    }
+    
+    .kwitansiGaris{
+        color: black;
+        text-align: center;
+    }
+
+    #cetakKwitansi,
+    #kembaliKwitansi,
+    #footer,
+    #sidebarLogo,
+    #preloader,
+    #kwitansiJudul {
+        display: none;
+    }
+
+}
+
+.kwitansiJudul{
+    color: black;
+    text-align: center;
+}
+
+.kwitansiAlamat{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+}
+
+.kwitansiBody{
+    color: black;
+    font-size: 17px;
+}
+
+.kwitansiPembayaran{
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.kwitansiPenutup{
+    color: black;
+    text-align: center;
+}
+
+.kwitansiGaris{
+    color: black;
+    text-align: center;
+}
