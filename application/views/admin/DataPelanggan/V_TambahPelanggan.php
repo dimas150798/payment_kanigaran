@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-sm-4 mt-3">
                                     <label for="code_client" class="form-label" style="font-weight: bold;"> Kode Pelanggan : <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="code_client" id="code_client" value="" placeholder="Masukkan kode pelanggan...">
+                                    <input type="text" class="form-control" name="code_client" id="code_client" value="<?php echo $this->M_Pelanggan->KodePelangganNew() ?>" placeholder="Masukkan kode pelanggan...">
                                     <div class="bg-danger">
                                         <small class="text-white"><?php echo form_error('code_client'); ?></small>
                                     </div>
