@@ -175,9 +175,9 @@ if (!function_exists('changeDateFormat')) {
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="10%">Nama Customer</th>
                                         <th width="10%">Tanggal</th>
                                         <th width="15%">Nama PPPOE</th>
+                                        <th width="10%">Nama Customer</th>
                                         <th width="15%">Paket</th>
                                         <th width="10%">Status</th>
                                         <th width="10%">Opsi</th>

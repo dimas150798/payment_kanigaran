@@ -116,9 +116,9 @@ class C_BelumLunas extends CI_Controller
 
                 $row = array();
                 $row[] = ++$no;
-                $row[] = $dataCustomer['name'];
                 $row[] = ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time']));
                 $row[] = $dataCustomer['name_pppoe'];
+                $row[] = $dataCustomer['name'];
                 $row[] = strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.');
                 $row[] = ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>');
 
@@ -152,9 +152,9 @@ class C_BelumLunas extends CI_Controller
 
                 $row = array();
                 $row[] = ++$no;
-                $row[] = $dataCustomer['name'];
                 $row[] = ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time']));
                 $row[] = $dataCustomer['name_pppoe'];
+                $row[] = $dataCustomer['name'];
                 $row[] = strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.');
                 $row[] = ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>');
 
