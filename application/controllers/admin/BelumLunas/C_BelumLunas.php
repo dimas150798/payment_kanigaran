@@ -106,7 +106,7 @@ class C_BelumLunas extends CI_Controller
         $TanggalAkhir               = $tahun . '-' . $bulan . '-' . $tanggal_akhir;
 
         if ($this->session->userdata('tahunGET') == NULL && $this->session->userdata('bulanGET') == NULL) {
-            $result        = $this->M_BelumLunas->BelumLunas($bulan, $tahun, $TanggalAkhir);
+            $result        = $this->M_BelumLunas->BelumLunas($this->session->userdata('bulan'), $this->session->userdata('tahun'), $this->session->userdata('TanggalAkhir'));
 
             $no = 0;
 
