@@ -12492,6 +12492,7 @@ body {
 
 .table {
 	width: 100%;
+	font-size: 11px;
 }
 
 .table thead {
