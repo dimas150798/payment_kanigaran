@@ -176,11 +176,11 @@ if (!function_exists('changeDateFormat')) {
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Nama Customer</th>
-                                        <th width="10%" class="text-center">Tanggal</th>
+                                        <th width="10%">Tanggal</th>
                                         <th width="15%">Nama PPPOE</th>
-                                        <th width="15%" class="text-center">Paket</th>
-                                        <th width="10%" class="text-center">Status</th>
-                                        <th width="10%" class="text-center">Opsi</th>
+                                        <th width="15%">Paket</th>
+                                        <th width="10%">Status</th>
+                                        <th width="10%">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

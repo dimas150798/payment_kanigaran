@@ -117,13 +117,13 @@ class C_BelumLunas extends CI_Controller
                 $row = array();
                 $row[] = ++$no;
                 $row[] = $dataCustomer['name'];
-                $row[] = '<div class="text-center">' . ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
+                $row[] = ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time']));
                 $row[] = $dataCustomer['name_pppoe'];
-                $row[] = '<div class="text-center">' . strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.') . '</div>';
-                $row[] = '<div class="text-center">' . ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>') . '</div>';
+                $row[] = strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.');
+                $row[] = ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>');
 
                 $row[] =
-                    '<div class="text-center">
+                    '
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdown" aria-expanded="false" aria-controls="dropdown">
                         Opsi
@@ -132,7 +132,6 @@ class C_BelumLunas extends CI_Controller
                         <a onclick="Payment(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Lunasi Pelanggan</a>
                         <a onclick="KirimWA(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Kirim Tagihan</a>
                     </div>
-                </div>
                 </div>';
                 $data[] = $row;
             }
@@ -154,23 +153,22 @@ class C_BelumLunas extends CI_Controller
                 $row = array();
                 $row[] = ++$no;
                 $row[] = $dataCustomer['name'];
-                $row[] = '<div class="text-center">' . ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
+                $row[] = ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time']));
                 $row[] = $dataCustomer['name_pppoe'];
-                $row[] = '<div class="text-center">' . strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.') . '</div>';
-                $row[] = '<div class="text-center">' . ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>') . '</div>';
+                $row[] = strtoupper($dataCustomer['nama_paket']) . ' / Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.');
+                $row[] = ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>');
 
                 $row[] =
-                    '<div class="text-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdown" aria-expanded="false" aria-controls="dropdown">
-                                Opsi
-                            </button>
-                            <div class="dropdown-menu text-black" style="background-color:aqua;">
-                                <a onclick="Payment(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Lunasi Pelanggan</a>
-                                <a onclick="KirimWA(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Kirim Tagihan</a>
-                            </div>
-                        </div>
-                    </div>';
+                    '
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdown" aria-expanded="false" aria-controls="dropdown">
+                        Opsi
+                    </button>
+                    <div class="dropdown-menu text-black" style="background-color:aqua;">
+                        <a onclick="Payment(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Lunasi Pelanggan</a>
+                        <a onclick="KirimWA(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Kirim Tagihan</a>
+                    </div>
+                </div>';
                 $data[] = $row;
             }
 
