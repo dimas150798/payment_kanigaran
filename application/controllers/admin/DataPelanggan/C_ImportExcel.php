@@ -3,6 +3,12 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Csv;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class C_ImportExcel extends CI_Controller
 {
     public function __construct()
@@ -38,102 +44,114 @@ class C_ImportExcel extends CI_Controller
 
             $upload_status = $this->uploadDoc();
             if ($upload_status != false) {
-                $inputFileName = 'assets/uploads/imports/' . $upload_status;
-                $inputTileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputTileType);
-                $spreadsheet = $reader->load($inputFileName);
-                $sheet = $spreadsheet->getSheet(0);
-                $count_Rows = 0;
+                $inputFileName      = 'assets/uploads/imports/' . $upload_status;
+                $inputTileType      = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+                $reader             = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputTileType);
+                $spreadsheet        = $reader->load($inputFileName);
+                $sheetData          = $spreadsheet->getActiveSheet()->toArray();
+            }
 
-                $counter = 0;
-                foreach ($sheet->getRowIterator(6) as $row) {
-                    if (++$counter == 6) continue;
-                    $Kode_Customer      = $spreadsheet->getActiveSheet()->getCell('B' . $row->getRowIndex());
-                    $Phone_Customer     = $spreadsheet->getActiveSheet()->getCell('C' . $row->getRowIndex());
-                    $Nama_Customer      = $spreadsheet->getActiveSheet()->getCell('D' . $row->getRowIndex());
-                    $Nama_Paket         = $spreadsheet->getActiveSheet()->getCell('E' . $row->getRowIndex());
-                    $Name_PPPOE         = $spreadsheet->getActiveSheet()->getCell('F' . $row->getRowIndex());
-                    $Password_PPPOE     = $spreadsheet->getActiveSheet()->getCell('G' . $row->getRowIndex());
-                    $Alamat_Customer    = $spreadsheet->getActiveSheet()->getCell('H' . $row->getRowIndex());
-                    $Email_Customer     = $spreadsheet->getActiveSheet()->getCell('I' . $row->getRowIndex());
-                    $Tanggal_Registrasi = $spreadsheet->getActiveSheet()->getCell('J' . $row->getRowIndex())->getFormattedValue();
-                    $Tanggal_Terminated = $spreadsheet->getActiveSheet()->getCell('K' . $row->getRowIndex())->getFormattedValue();
-                    $Nama_Area          = $spreadsheet->getActiveSheet()->getCell('L' . $row->getRowIndex());
-                    $Nama_Sales         = $spreadsheet->getActiveSheet()->getCell('M' . $row->getRowIndex());
+            for ($i = 5; $i < count($sheetData); $i++) {
+                $code_client        = $sheetData[$i]['1'];
+                $name               = $sheetData[$i]['2'];
+                $phone              = $sheetData[$i]['3'];
+                $nama_paket         = $sheetData[$i]['4'];
+                $name_pppoe         = $sheetData[$i]['6'];
+                $password_pppoe     = $sheetData[$i]['7'];
+                $address            = $sheetData[$i]['8'];
+                $email              = $sheetData[$i]['9'];
+                $start_date         = $sheetData[$i]['10'];
+                $nama_area          = $sheetData[$i]['11'];
+                $nama_sales         = $sheetData[$i]['12'];
+                $id_paket           = $sheetData[$i]['13'];
+                $id_area            = $sheetData[$i]['14'];
+                $id_sales           = $sheetData[$i]['15'];
 
-                    $this->session->set_userdata('name_pppoe', $Name_PPPOE);
+                // Menyimpan data dalam array
+                $data_customer = array(
+                    'code_client'       => $code_client,
+                    'phone'             => $phone,
+                    'name'              => $name,
+                    'id_paket'          => $id_paket,
+                    'name_pppoe'        => $name_pppoe,
+                    'password_pppoe'    => $password_pppoe,
+                    'address'           => $address,
+                    'email'             => $email,
+                    'start_date'        => $start_date,
+                    'id_area'           => $id_area,
+                    'id_sales'          => $id_sales,
+                );
 
-                    $CheckDuplicate     = $this->M_Pelanggan->CheckDuplicatePelanggan($Name_PPPOE);
+                // Kondisi insert / update
+                $conditionData = $this->db->get_where('client', array('name_pppoe' => $name_pppoe))->result_array();
 
-                    // Convert Date
-                    $spreadsheet->getActiveSheet()->getStyle('K' . $row->getRowIndex())
-                        ->getNumberFormat()
-                        ->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_DATE_YYYYMMDDSLASH);
+                // Get data data_customer
+                $getData = $this->db->query("SELECT id, code_client, phone, latitude, longitude, name, id_paket, name_pppoe, password_pppoe, id_pppoe, address, email, start_date, stop_date, id_area, description, id_sales, disabled, keterangan, created_at, updated_at FROM client")->result_array();
 
-                    $spreadsheet->getActiveSheet()->getStyle('L' . $row->getRowIndex())
-                        ->getNumberFormat()
-                        ->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_DATE_YYYYMMDDSLASH);
+                // Condition update
+                if (count($conditionData) != 0) {
+                    foreach ($getData as $data) {
+                        if ($data['name_pppoe'] == $sheetData[$i]['6']) {
 
-                    if ($CheckDuplicate->name_pppoe == $Name_PPPOE) {
-                        // Notifikasi Gagal Import
-                        $this->session->set_flashdata('ExcelGagal_icon', 'danger');
-                        $this->session->set_flashdata('ExcelGagal_title', 'Terdapat Data Nama Yang Sama');
-
-                        redirect('admin/DataPelanggan/C_ImportExcel');
-                    } else {
-                        if ($Tanggal_Terminated == NULL) {
-                            $data = array(
-                                'kode_customer'     => $Kode_Customer,
-                                'phone_customer'    => $Phone_Customer,
-                                'nama_customer'     => $Nama_Customer,
-                                'nama_paket'        => $Nama_Paket,
-                                'name_pppoe'        => $Name_PPPOE,
-                                'password_pppoe'    => $Password_PPPOE,
-                                'alamat_customer'   => $Alamat_Customer,
-                                'email_customer'    => $Email_Customer,
-                                'start_date'        => $Tanggal_Registrasi,
-                                'nama_area'         => $Nama_Area,
-                                'nama_sales'        => $Nama_Sales
+                            $updateData = array(
+                                'code_client' => $sheetData[$i]['1'],
+                                'phone' => $sheetData[$i]['3'],
+                                // Add more fields to update as needed
                             );
-                        } else {
-                            $data = array(
-                                'kode_customer'     => $Kode_Customer,
-                                'phone_customer'    => $Phone_Customer,
-                                'nama_customer'     => $Nama_Customer,
-                                'nama_paket'        => $Nama_Paket,
-                                'name_pppoe'        => $Name_PPPOE,
-                                'password_pppoe'    => $Password_PPPOE,
-                                'alamat_customer'   => $Alamat_Customer,
-                                'email_customer'    => $Email_Customer,
-                                'start_date'        => $Tanggal_Registrasi,
-                                'stop_date'         => $Tanggal_Terminated,
-                                'nama_area'         => $Nama_Area,
-                                'nama_sales'        => $Nama_Sales
-                            );
+
+                            $this->db->where('id_pppoe', $data['id_pppoe']);
+                            $this->db->update("client", $updateData);
+
+                            echo "
+                                <script>history.go(-1);</script>
+                            ";
                         }
-                        $this->db->insert('data_customer', $data);
-                        $count_Rows++;
-
-                        // Notifikasi Insert Data Berhasil
-                        $this->session->set_flashdata('ExcelSuccess_icon', 'success');
-                        $this->session->set_flashdata('ExcelSuccess_title', 'Insert Data Berhasil');
-
-                        redirect('admin/DataPelanggan/C_DataPelanggan');
                     }
                 }
-            } else {
-                // Notifikasi Insert Data Gagal
-                $this->session->set_flashdata('ExcelGagal_icon', 'warning');
-                $this->session->set_flashdata('ExcelGagal_title', 'Insert Data Gagal');
 
-                redirect('admin/DataPelanggan/C_ImportExcel');
+                // Condition insert
+                if (count($conditionData) == 0) {
+                    $insertData = array(
+                        'code_client'       => $code_client,
+                        'phone'             => $phone,
+                        'name'              => $name,
+                        'id_paket'          => $id_paket,
+                        'name_pppoe'        => $name_pppoe,
+                        'password_pppoe'    => $password_pppoe,
+                        'address'           => $address,
+                        'email'             => $email,
+                        'start_date'        => $start_date,
+                        'id_area'           => $id_area,
+                        'id_sales'          => $id_sales,
+                        // Add more fields to insert as needed
+                    );
+
+                    if ($nama_paket == 'Free 20 Mbps') {
+                        $profile_paket = 'HOME 20 B';
+                    } elseif ($nama_paket == 'Free Up Home 50') {
+                        $profile_paket = 'HOME 50 B';
+                    } else {
+                        $profile_paket = strtoupper($nama_paket) . " B";
+                    }
+
+                    // Tambah Pelanggan Ke Mikrotik
+                    $api = connect();
+                    $api->comm('/ppp/secret/add', [
+                        "name"     => $name_pppoe,
+                        "password" => $password_pppoe,
+                        "service"  => "pppoe",
+                        "profile"  => $profile_paket,
+                        "comment"  => "",
+                    ]);
+                    $api->disconnect();
+
+                    $this->db->insert('client', $insertData);
+
+                    echo "
+                        <script>history.go(-1);</script>
+                    ";
+                }
             }
-        } else {
-            // Notifikasi Insert Data Gagal
-            $this->session->set_flashdata('ExcelGagal_icon', 'warning');
-            $this->session->set_flashdata('ExcelGagal_title', 'Insert Data Gagal');
-
-            redirect('admin/DataPelanggan/C_DataPelanggan');
         }
     }
 
@@ -149,10 +167,14 @@ class C_ImportExcel extends CI_Controller
         $config['max_size'] = 1000000;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
+
+
         if ($this->upload->do_upload('upload_excel')) {
             $fileData = $this->upload->data();
             $data['file_name'] = $fileData['file_name'];
             $this->db->insert('data_excel', $data);
+
+
             $insert_id = $this->db->insert_id();
             $_SESSION['lastid'] = $insert_id;
 

@@ -125,6 +125,9 @@ class C_ExportExcel extends CI_Controller
         $sheet->setCellValue('K4', 'Tanggal Registrasi');
         $sheet->setCellValue('L4', 'Nama Area');
         $sheet->setCellValue('M4', 'Nama Sales');
+        $sheet->setCellValue('N4', 'Id Paket');
+        $sheet->setCellValue('O4', 'Id Area');
+        $sheet->setCellValue('P4', 'Id Sales');
 
         // Merubah huruf
         $spreadsheet->getDefaultStyle()->getFont()->setName('Times New Roman');
@@ -143,6 +146,9 @@ class C_ExportExcel extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('K4')->applyFromArray($styleHeader);
         $spreadsheet->getActiveSheet()->getStyle('L4')->applyFromArray($styleHeader);
         $spreadsheet->getActiveSheet()->getStyle('M4')->applyFromArray($styleHeader);
+        $spreadsheet->getActiveSheet()->getStyle('N4')->applyFromArray($styleHeader);
+        $spreadsheet->getActiveSheet()->getStyle('O4')->applyFromArray($styleHeader);
+        $spreadsheet->getActiveSheet()->getStyle('P4')->applyFromArray($styleHeader);
 
         // Merubah ukuran font
         $spreadsheet->getActiveSheet()->getStyle('A4')->getFont()->setSize(14);
@@ -158,6 +164,9 @@ class C_ExportExcel extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('K4')->getFont()->setSize(14);
         $spreadsheet->getActiveSheet()->getStyle('L4')->getFont()->setSize(14);
         $spreadsheet->getActiveSheet()->getStyle('M4')->getFont()->setSize(14);
+        $spreadsheet->getActiveSheet()->getStyle('N4')->getFont()->setSize(14);
+        $spreadsheet->getActiveSheet()->getStyle('O4')->getFont()->setSize(14);
+        $spreadsheet->getActiveSheet()->getStyle('P4')->getFont()->setSize(14);
 
         // merubah ukuran border
         $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
@@ -173,6 +182,9 @@ class C_ExportExcel extends CI_Controller
         $spreadsheet->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
         $spreadsheet->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
         $spreadsheet->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
 
         /* Excel Data */
         $row_number = 5;
@@ -190,6 +202,9 @@ class C_ExportExcel extends CI_Controller
             $sheet->setCellValue('K' . $row_number, $row['start_date']);
             $sheet->setCellValue('L' . $row_number, $row['nama_area']);
             $sheet->setCellValue('M' . $row_number, $row['nama_sales']);
+            $sheet->setCellValue('N' . $row_number, $row['id_paket']);
+            $sheet->setCellValue('O' . $row_number, $row['id_area']);
+            $sheet->setCellValue('P' . $row_number, $row['id_sales']);
 
 
             $spreadsheet->getActiveSheet()->getStyle('A' . $row_number)->applyFromArray($styleTables);
@@ -205,6 +220,9 @@ class C_ExportExcel extends CI_Controller
             $spreadsheet->getActiveSheet()->getStyle('K' . $row_number)->applyFromArray($styleTables);
             $spreadsheet->getActiveSheet()->getStyle('L' . $row_number)->applyFromArray($styleTables);
             $spreadsheet->getActiveSheet()->getStyle('M' . $row_number)->applyFromArray($styleTables);
+            $spreadsheet->getActiveSheet()->getStyle('N' . $row_number)->applyFromArray($styleTables);
+            $spreadsheet->getActiveSheet()->getStyle('O' . $row_number)->applyFromArray($styleTables);
+            $spreadsheet->getActiveSheet()->getStyle('P' . $row_number)->applyFromArray($styleTables);
 
             // Convert nominal indonesia
             $spreadsheet->getActiveSheet()->getStyle('E' . $row_number)->getNumberFormat()->setFormatCode('#,##0');
@@ -223,6 +241,9 @@ class C_ExportExcel extends CI_Controller
             $spreadsheet->getActiveSheet()->getStyle('K' . $row_number)->getFont()->setSize(12);
             $spreadsheet->getActiveSheet()->getStyle('L' . $row_number)->getFont()->setSize(12);
             $spreadsheet->getActiveSheet()->getStyle('M' . $row_number)->getFont()->setSize(12);
+            $spreadsheet->getActiveSheet()->getStyle('N' . $row_number)->getFont()->setSize(12);
+            $spreadsheet->getActiveSheet()->getStyle('O' . $row_number)->getFont()->setSize(12);
+            $spreadsheet->getActiveSheet()->getStyle('P' . $row_number)->getFont()->setSize(12);
 
             $row_number++;
         }
