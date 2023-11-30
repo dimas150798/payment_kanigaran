@@ -12,4 +12,16 @@ class M_ImportExcel extends CI_Model
 
         return $query->result_array();
     }
+
+    public function DataExcelPembayaran()
+    {
+        $query   = $this->db->query("SELECT id_excel, file_name, keterangan, created_at
+                FROM data_excel
+                WHERE keterangan = 'Pembayaran'
+
+                
+                ORDER BY created_at DESC");
+
+        return $query->result_array();
+    }
 }
