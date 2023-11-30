@@ -60,7 +60,7 @@ class C_FormLogin extends CI_Controller
         }
     }
 
-    public function TerminasiAuto()
+    public function TerminasiAutoKanigaran()
     {
         date_default_timezone_set("Asia/Jakarta");
         // Menampilkan tanggal sekarang
@@ -134,7 +134,7 @@ class C_FormLogin extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($ouput));
     }
 
-    public function InsertCustomer()
+    public function InsertCustomerKanigaran()
     {
         $this->MikrotikModel->index();
     }
