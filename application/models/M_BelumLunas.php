@@ -101,7 +101,7 @@ class M_BelumLunas extends CI_Model
             $no         = "0001";
         }
 
-        $invoice = "IK7" . date('ym') . $no;
+        $invoice = "IR7" . date('ym') . $no;
         return $invoice;
     }
 
