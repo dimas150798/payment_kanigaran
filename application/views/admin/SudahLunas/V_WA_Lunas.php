@@ -37,6 +37,7 @@ if (!function_exists('changeDateFormat')) {
                             <form method="POST" action="<?php echo base_url('admin/SudahLunas/C_WA_Lunas/KirimWAAksi') ?>">
                                 <div class="row">
                                     <input type="hidden" class="form-control" name="id" value=" <?php echo $data['id'] ?>" readonly>
+                                    <input type="hidden" class="form-control" name="code_client" value=" <?php echo $data['code_client'] ?>" readonly>
                                     <input type="hidden" class="form-control" name="nama_paket" value=" <?php echo $data['nama_paket'] ?>" readonly>
                                     <input type="hidden" class="form-control" name="harga_paket" value=" <?php echo $data['harga_paket'] ?>" readonly>
                                     <input type="hidden" class="form-control" name="tanggal_transaksi" value=" <?php echo $data['tanggal'] ?>" readonly>
