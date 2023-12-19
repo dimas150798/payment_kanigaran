@@ -138,7 +138,7 @@ class C_TambahPelanggan extends CI_Controller
         $data['DataSales'] = $this->M_Sales->DataSales();
 
         // Check name pppoe duplicate
-        $checkDuplicate = $this->M_Pelanggan->CheckDuplicatePelanggan($name_pppoe);
+        $checkDuplicate = $this->M_Pelanggan->CheckDuplicatePelanggan($kode_name_pppoe);
 
         // Check duplicate code
         $checkDuplicateCode = $this->M_Pelanggan->CheckDuplicateCode($order_id);
