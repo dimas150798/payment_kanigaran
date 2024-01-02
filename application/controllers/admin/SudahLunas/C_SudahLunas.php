@@ -61,7 +61,7 @@ class C_SudahLunas extends CI_Controller
             $this->load->view('template/V_FooterSudahLunas', $data);
         } else {
             date_default_timezone_set("Asia/Jakarta");
-            $bulan                      = date("m");
+            $bulan                      = date("n");
             $tahun                      = date("Y");
 
             // Menampilkan tanggal pada akhir bulan
