@@ -60,7 +60,7 @@ if (!function_exists('changeDateFormat')) {
                                 <div class="row">
                                     <div class="col-sm-4 mt-3">
                                         <label for="bulan_penagihan" class="form-label" style="font-weight: bold;"> Penagihan Bulan : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="bulan_penagihan" value="<?php echo $months[$bulan] ?>" placeholder="Data Kosong" readonly>
+                                        <input type="text" class="form-control" name="bulan_penagihan" value="<?php echo $months[(int)$bulan] ?>" placeholder="Data Kosong" readonly>
                                     </div>
                                     <div class="col-sm-4 mt-3">
                                         <label for="phone" class="form-label" style="font-weight: bold;"> No Telephon : <span class="text-danger">*</span></label>
