@@ -15,13 +15,13 @@ if (!function_exists('changeDateFormat')) {
         <div class="menuatas">
             <div class="row align-items-center justify-content-between">
                 <div class="col-xl-6">
-                    <img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/list.svg" alt="Bootstrap" ...> <b class="textmenuatas">Sudah Lunas</b>
+                    <img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/list.svg" alt="Bootstrap" ...> <b class="fw-bold fs-4">Sudah Lunas</b>
                 </div>
                 <div class="col-12 col-xl-auto mt-2">
-                    <a class="btn buttonmenuatas" href="<?php echo base_url('admin/SudahLunas/C_ExportExcel') ?>"><img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/file-excel-fill.svg" alt="Bootstrap" ...> Export Excel
+                    <a class="btn btn-warning fw-bold" href="<?php echo base_url('admin/SudahLunas/C_ExportExcel') ?>"> Export Excel
                     </a>
-                    <a class="btn buttonmenuatas" href="<?php echo base_url('admin/SudahLunas/C_ImportExcel') ?>"><img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/file-excel-fill.svg" alt="Bootstrap" ...> Import Excel
-                    </a>
+                    <!-- <a class="btn buttonmenuatas" href="<?php echo base_url('admin/SudahLunas/C_ImportExcel') ?>"><img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/file-excel-fill.svg" alt="Bootstrap" ...> Import Excel
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -32,60 +32,33 @@ if (!function_exists('changeDateFormat')) {
                 <form class="form-inline" action="<?php echo base_url('admin/SudahLunas/C_SudahLunas') ?>" method=" get">
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="tahun">Tahun : </label>
-                            <select class="form-control text-center" name="tahun" required>
+                            <label for="tahun" class="fw-bold fs-5 mt-2 mb-2">Tahun : </label>
+                            <select class="form-control text-center fw-bold fs-6" name="tahun" required>
                                 <?php
-                                if ($tahunGET == NULL) {
-                                    echo '<option value="" disabled selected>-- Pilih Tahun --</option>';
+                                $selectedYear = $this->session->userdata('tahunGET') ?: $this->session->userdata('tahun');
 
-                                    for ($i = 2022; $i <= 2025; $i++) {
-                                        if ($tahun == $i) {
-                                            echo '<option selected value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>' . "\n";
-                                        } else {
-                                            echo '<option value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>' . "\n";
-                                        }
-                                    }
-                                } else {
-                                    echo '<option value="" disabled>-- Pilih Tahun --</option>';
+                                echo '<option value="" disabled>-- Pilih Tahun --</option>';
 
-                                    for ($i = 2022; $i <= 2025; $i++) {
-                                        if ($tahunGET == $i) {
-                                            echo '<option selected value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>' . "\n";
-                                        } else {
-                                            echo '<option value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>' . "\n";
-                                        }
-                                    }
+                                for ($i = 2022; $i <= 2025; $i++) {
+                                    $selected = ($selectedYear == $i) ? 'selected' : '';
+                                    echo '<option ' . $selected . ' value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>';
                                 }
                                 ?>
                             </select>
                         </div>
 
                         <div class="col-md-2">
-                            <label for="bulan">Bulan : </label>
-                            <select class="form-control text-center" name="bulan" required>
+                            <label for="bulan" class="fw-bold fs-5 mt-2 mb-2">Bulan : </label>
+                            <select class="form-control text-center fw-bold fs-6" name="bulan" required>
                                 <?php
-                                if ($bulanGET == NULL) {
-                                    echo '<option value="" disabled>-- Pilih Bulan --</option>';
+                                $selectedMonth = $this->session->userdata('bulanGET') ?: $this->session->userdata('bulan');
 
-                                    for ($m = 1; $m <= 12; ++$m) {
-                                        if ($bulan == $m) {
-                                            echo '<option selected value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>' . "\n";
-                                        } else {
-                                            echo '<option  value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>' . "\n";
-                                        }
-                                    }
-                                } else {
-                                    echo '<option value="" disabled>-- Pilih Bulan --</option>';
+                                echo '<option value="" disabled>-- Pilih Bulan --</option>';
 
-                                    for ($m = 1; $m <= 12; ++$m) {
-                                        if ($bulanGET == $m) {
-                                            echo '<option selected value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>' . "\n";
-                                        } else {
-                                            echo '<option  value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>' . "\n";
-                                        }
-                                    }
+                                for ($m = 1; $m <= 12; ++$m) {
+                                    $selected = ($selectedMonth == $m) ? 'selected' : '';
+                                    echo '<option ' . $selected . ' value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>';
                                 }
-
                                 ?>
                             </select>
                         </div>
@@ -105,36 +78,33 @@ if (!function_exists('changeDateFormat')) {
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Data</p>
+                                <p class="fw-bold fs-5">Data</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">:
+                                <p class="fw-bold fs-5">:
                                     <?php
-                                    if ($tahunGET == NULL && $bulanGET == NULL) {
-                                        echo $months[$bulan] . ' / ' . $tahun;
-                                    } else {
-                                        echo $months[$bulanGET] . ' / ' . $tahunGET;
-                                    }
-                                    ?></p>
+                                    echo $months[$bulan] . ' / ' . $tahun;
+                                    ?>
+                                </p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Sudah Lunas</p>
+                                <p class="fw-bold fs-5">Sudah Lunas</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">:
+                                <p class="fw-bold fs-5">:
                                     <?php echo $JumlahSudahLunas; ?></p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Nominal</p>
+                                <p class="fw-bold fs-5">Nominal</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">: Rp.
+                                <p class="fw-bold fs-5">: Rp.
                                     <?php echo number_format($NominalSudahLunas, 0, ',', '.') ?></p>
                             </div>
                         </div>
@@ -164,13 +134,14 @@ if (!function_exists('changeDateFormat')) {
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="10%">Nama Customer</th>
-                                        <th width="10%">Tanggal</th>
-                                        <th width="10%">Nama PPPOE</th>
-                                        <th width="10%">Paket</th>
-                                        <th width="10%">Payment By</th>
-                                        <th width="10%">Status</th>
-                                        <th width="10%">Action</th>
+                                        <th width="15%">Name PPPOE</th>
+                                        <th width="15%">Nama</th>
+                                        <th width="15%" class="text-center">Tanggal</th>
+                                        <th width="10%" class="text-center">Paket</th>
+                                        <th width="10%" class="text-center">Tarif</th>
+                                        <th width="15%" class="text-center">Payment By</th>
+                                        <th width="10%" class="text-center">Status</th>
+                                        <th width="5%" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

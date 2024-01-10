@@ -16,7 +16,7 @@ if (!function_exists('changeDateFormat')) {
         <div class="menuatas">
             <div class="row align-items-center justify-content-between">
                 <div class="col-xl-6">
-                    <i class="fa fa-list"></i> <b class="textmenuatas">Kirim WA Lunas</b>
+                    <i class="fa fa-list"></i> <b class="fw-bold fs-5">Kirim WA Lunas</b>
                 </div>
                 <div class="col-12 col-xl-auto mt-2">
                     <a class="btn bg-danger text-white" onclick="history.back()"><img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/backspace-fill.svg" alt="Bootstrap" ...> Kembali
@@ -27,7 +27,7 @@ if (!function_exists('changeDateFormat')) {
 
         <div class="container">
             <div class="card mb-3 mt-3">
-                <div class="card-header">
+                <div class="card-header bg-primary text-white fw-bold fs-5">
                     <i class="fas fa-table me-1"></i>
                     Data Pelanggan
                 </div>
@@ -36,41 +36,61 @@ if (!function_exists('changeDateFormat')) {
                         <?php foreach ($DataPelanggan as $data) : ?>
                             <form method="POST" action="<?php echo base_url('admin/SudahLunas/C_WA_Lunas/KirimWAAksi') ?>">
                                 <div class="row">
-                                    <input type="hidden" class="form-control" name="id" value=" <?php echo $data['id'] ?>" readonly>
-                                    <input type="hidden" class="form-control" name="code_client" value=" <?php echo $data['code_client'] ?>" readonly>
-                                    <input type="hidden" class="form-control" name="nama_paket" value=" <?php echo $data['nama_paket'] ?>" readonly>
-                                    <input type="hidden" class="form-control" name="harga_paket" value=" <?php echo $data['harga_paket'] ?>" readonly>
-                                    <input type="hidden" class="form-control" name="tanggal_transaksi" value=" <?php echo $data['tanggal'] ?>" readonly>
-                                    <input type="hidden" class="form-control" name="tahun_transaksi" value=" <?php echo $data['tahun_transaksi']; ?>" readonly>
-                                    <input type="hidden" class="form-control" name="biaya_admin" value=" <?php echo $data['biaya_admin']; ?>" readonly>
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="id" value=" <?php echo $data['id'] ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="code_client" value=" <?php echo $data['code_client'] ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="nama_paket" value=" <?php echo $data['nama_paket'] ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="harga_paket" value=" <?php echo $data['harga_paket'] ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="tanggal_transaksi" value=" <?php echo $data['tanggal'] ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="tahun_transaksi" value=" <?php echo $data['tahun_transaksi']; ?>" readonly>
+                                        <input type="hidden" class="form-control bg-warning fw-bold" name="biaya_admin" value=" <?php echo $data['biaya_admin']; ?>" readonly>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 mt-3">
-                                        <label for="name" class="form-label" style="font-weight: bold;"> Nama Customer : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="name" value="<?php echo $data['name'] ?>" placeholder="Data Kosong" readonly>
+                                        <label for="name" class="form-label fw-bold fs-5"> Nama Customer : <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary"><i class="bi bi-person-bounding-box text-white"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="name" value="<?php echo $data['name'] ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4 mt-3">
-                                        <label for="nama_pppoe" class="form-label" style="font-weight: bold;"> Name PPPOE : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="name_pppoe" value="<?php echo $data['name_pppoe'] ?>" placeholder="Data Kosong" readonly>
+                                        <label for="nama_pppoe" class="form-label fw-bold fs-5"> Name PPPOE : <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary"><i class="bi bi-person-bounding-box text-white"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="name_pppoe" value="<?php echo $data['name_pppoe'] ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4 mt-3">
-                                        <label for="code_client" class="form-label" style="font-weight: bold;"> Kode Pelanggan : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="code_client" value="<?php echo $data['code_client'] ?>" placeholder="Data Kosong" readonly>
+                                        <label for="code_client" class="form-label fw-bold fs-5"> Kode Customer : <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary"><i class="bi bi-bookmarks-fill text-white"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="code_client" value="<?php echo $data['code_client'] ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-sm-4 mt-3">
-                                        <label for="bulan_penagihan" class="form-label" style="font-weight: bold;"> Penagihan Bulan : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="bulan_transaksi" value="<?php echo $months[$data['bulan_transaksi']] ?>" placeholder="Data Kosong" readonly>
+                                        <label for="bulan_penagihan" class="form-label fw-bold fs-5"> Penagihan Bulan : <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary text-white"><i class="bi bi-bookmarks-fill"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="bulan_transaksi" value="<?php echo $months[$data['bulan_transaksi']] ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4 mt-3">
-                                        <label for="phone" class="form-label" style="font-weight: bold;"> No Telephon : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="phone" value="<?php echo $data['phone'] ?>" placeholder="Data Kosong" readonly>
+                                        <label for="phone" class="form-label fw-bold fs-5"> No Telepon: <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary text-white"><i class="bi bi-telephone-fill"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="phone" value="<?php echo $data['phone'] ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4 mt-3">
-                                        <label for="" class="form-label" style="font-weight: bold;"> Paket : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="" value="<?php echo $data['nama_paket'] ?> / Rp.  <?php echo number_format($data['harga_paket'], 0, ',', '.') ?>" placeholder="Data Kosong" readonly>
+                                        <label for="" class="form-label fw-bold fs-5"> Paket Internet : <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-secondary"><i class="bi bi-wifi text-white"></i></span>
+                                            <input type="text" class="form-control bg-warning fw-bold" name="" value="<?php echo $data['nama_paket'] ?> / Rp.  <?php echo number_format($data['harga_paket'], 0, ',', '.') ?>" placeholder="Data Kosong" readonly>
+                                        </div>
                                     </div>
                                 </div>
 
