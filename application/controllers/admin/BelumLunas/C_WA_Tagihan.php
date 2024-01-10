@@ -19,13 +19,15 @@ class C_WA_Tagihan extends CI_Controller
 
     public function KirimWA($id_customer)
     {
-        $data['bulan']      = $this->session->userdata('bulan');
-        $data['tahun']      = $this->session->userdata('tahun');
-        $data['bulanGET']   = $this->session->userdata('bulanGET');
-        $data['tahunGET']   = $this->session->userdata('tahunGET');
+        date_default_timezone_set("Asia/Jakarta");
+
+        $bulan_show = $this->session->userdata('bulan_GET') != NULL && $this->session->userdata('bulan_GET') != ''
+            ? $this->session->userdata('bulan_GET')
+            : date("n");
 
         //memanggil mysql dari model 
         $data['DataPelanggan']  = $this->M_BelumLunas->Payment($id_customer);
+        $data['bulan']          = $bulan_show;
 
         $this->session->userdata('tahunGET');
         $this->session->userdata('bulanGET');

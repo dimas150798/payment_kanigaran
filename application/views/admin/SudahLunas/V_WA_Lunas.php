@@ -47,21 +47,21 @@ if (!function_exists('changeDateFormat')) {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-4 mt-3">
+                                    <div class="col-sm-12 col-lg-4 mt-4">
                                         <label for="name" class="form-label fw-bold fs-5"> Nama Customer : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary"><i class="bi bi-person-bounding-box text-white"></i></span>
                                             <input type="text" class="form-control bg-warning fw-bold" name="name" value="<?php echo $data['name'] ?>" placeholder="Data Kosong" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 mt-3">
+                                    <div class="col-sm-12 col-lg-4 mt-4">
                                         <label for="nama_pppoe" class="form-label fw-bold fs-5"> Name PPPOE : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary"><i class="bi bi-person-bounding-box text-white"></i></span>
                                             <input type="text" class="form-control bg-warning fw-bold" name="name_pppoe" value="<?php echo $data['name_pppoe'] ?>" placeholder="Data Kosong" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 mt-3">
+                                    <div class="col-sm-12 col-lg-4 mt-4">
                                         <label for="code_client" class="form-label fw-bold fs-5"> Kode Customer : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary"><i class="bi bi-bookmarks-fill text-white"></i></span>
@@ -71,21 +71,21 @@ if (!function_exists('changeDateFormat')) {
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-4 mt-3">
+                                    <div class="col-sm-12 col-lg-4 mt-4">
                                         <label for="bulan_penagihan" class="form-label fw-bold fs-5"> Penagihan Bulan : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary text-white"><i class="bi bi-bookmarks-fill"></i></span>
                                             <input type="text" class="form-control bg-warning fw-bold" name="bulan_transaksi" value="<?php echo $months[$data['bulan_transaksi']] ?>" placeholder="Data Kosong" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 mt-3">
-                                        <label for="phone" class="form-label fw-bold fs-5"> No Telepon: <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12 col-lg-4 mt-4">
+                                        <label for="phone" class="form-label fw-bold fs-5"> No. Telepon: <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary text-white"><i class="bi bi-telephone-fill"></i></span>
                                             <input type="text" class="form-control bg-warning fw-bold" name="phone" value="<?php echo $data['phone'] ?>" placeholder="Data Kosong" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 mt-3">
+                                    <div class="col-sm-12 col-lg-4 mt-4">
                                         <label for="" class="form-label fw-bold fs-5"> Paket Internet : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary"><i class="bi bi-wifi text-white"></i></span>
