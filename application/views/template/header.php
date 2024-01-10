@@ -11,6 +11,7 @@
 	<link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/logoSaja.png" />
 
 	<!-- Icon bootstrap -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootsrap-icons.css">
 
 	<!-- Style CSS -->
@@ -23,7 +24,7 @@
 
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.semanticui.min.css" />
-	
+
 	<!-- Font  -->
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 

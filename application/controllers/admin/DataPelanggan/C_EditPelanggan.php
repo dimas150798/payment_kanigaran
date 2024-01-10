@@ -42,6 +42,7 @@ class C_EditPelanggan extends CI_Controller
         $name                   = $this->input->post('name');
         $id_paket               = $this->input->post('id_paket');
         $name_pppoe             = $this->input->post('name_pppoe');
+        $name_pppoe_old         = $this->input->post('name_pppoe_old');
         $password_pppoe         = $this->input->post('password_pppoe');
         $address                = $this->input->post('address');
         $email                  = $this->input->post('email');
@@ -62,6 +63,15 @@ class C_EditPelanggan extends CI_Controller
         } else {
             $profile_paket      = strtoupper($name_paket) . " B";
         }
+
+        $updateDataPayment  = array(
+            'nama'          => $name_pppoe,
+        );
+
+        $namePPPOE_old      = array(
+            'nama'          => $name_pppoe_old
+        );
+
 
         // Menyimpan data pelanggan ke dalam array
         $dataPelanggan = array(
@@ -125,6 +135,11 @@ class C_EditPelanggan extends CI_Controller
             $api->disconnect();
 
             $this->M_CRUD->updateData('client', $dataPelanggan, $idCustomer);
+
+            // Update data pembayaran apabila name pppoe update
+            $this->M_CRUD->updateData('data_pembayaran', $updateDataPayment, $namePPPOE_old);
+            $this->M_CRUD->updateData('data_pembayaran_history', $updateDataPayment, $namePPPOE_old);
+
 
             // Notifikasi Login Berhasil
             $this->session->set_flashdata('Edit_icon', 'success');
