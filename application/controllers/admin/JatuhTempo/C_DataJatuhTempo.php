@@ -67,14 +67,18 @@ class C_DataJatuhTempo extends CI_Controller
 
         foreach ($result as $dataCustomer) {
             $GrossAmount = $dataCustomer['gross_amount'] == NULL;
+            $StatusMikrotik = $dataCustomer['disabled'] == 'true';
 
             $row = array();
-            $row[] = ++$no;
+            $row = array();
+            $row[] = '<div class="text-center">' . ++$no . '</div>';
+            $row[] = '<div class="text-center">' . ($GrossAmount ? 'Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
             $row[] = $dataCustomer['name_pppoe'];
-            $row[] = '<div class="text-center">' . ($GrossAmount ? 'Penagihan Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
-            $row[] = '<div class="text-center">' . $dataCustomer['nama_paket'] . '</div>';
+            $row[] = $dataCustomer['name'];
+            $row[] = '<div class="text-center">' . strtoupper($dataCustomer['nama_paket']) . '</div>';
             $row[] = '<div class="text-center">' . 'Rp. ' . number_format($dataCustomer['harga_paket'], 0, ',', '.') . '</div>';
-            $row[] = '<div class="text-center">' . ($GrossAmount ? '<span class="badge bg-danger">BELUM LUNAS</span>' : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
+            $row[] = '<div class="text-center">' . ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>') . '</div>';
+
             $row[] =
                 '<div class="text-center">
                 <div class="btn-group">
@@ -82,8 +86,8 @@ class C_DataJatuhTempo extends CI_Controller
                         Opsi
                     </button>
                     <div class="dropdown-menu text-black" style="background-color:aqua;">
-                        <a onclick="PaymentJatuhTempo(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Lunasi Pelanggan</a>
-                        <a onclick="KirimWAJatuhTempo(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"></i> Kirim Tagihan</a>
+                        <a onclick="PaymentJatuhTempo(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"><i class="bi bi-receipt-cutoff"></i>  Lunasi Pelanggan</a>
+                        <a onclick="KirimWAJatuhTempo(' . $dataCustomer['id'] . ')"class="dropdown-item text-black"><i class="bi bi-whatsapp"></i> Kirim Tagihan</a>
                     </div>
                 </div>
                 </div>';

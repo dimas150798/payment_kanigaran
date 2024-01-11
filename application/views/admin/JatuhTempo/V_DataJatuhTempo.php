@@ -15,12 +15,8 @@ if (!function_exists('changeDateFormat')) {
         <div class="menuatas">
             <div class="row align-items-center justify-content-between">
                 <div class="col-xl-6">
-                    <img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/list.svg" alt="Bootstrap" ...> <b class="textmenuatas">Jatuh Tempo</b>
+                    <img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/list.svg" alt="Bootstrap" ...> <b class="fw-bolf fs-4">Jatuh Tempo</b>
                 </div>
-                <!-- <div class="col-12 col-xl-auto mt-2">
-                    <a class="btn buttonmenuatas" href="<?php echo base_url('admin/DataPelanggan/C_TambahPelanggan') ?>"><img src="<?php echo base_url(); ?>vendor/bootstrap-icons/icons/plus-circle.svg" alt="Bootstrap" ...> Tambah Pelanggan
-                    </a>
-                </div> -->
             </div>
         </div>
 
@@ -32,10 +28,10 @@ if (!function_exists('changeDateFormat')) {
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Data</p>
+                                <p class="fw-bold fs-5">Data</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">:
+                                <p class="fw-bold fs-5">:
                                     <?php echo $tanggal ?> / <?php echo $months[(int)$bulan] ?> / <?php echo $tahun ?>
                                 </p>
                             </div>
@@ -43,10 +39,10 @@ if (!function_exists('changeDateFormat')) {
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Jatuh Tempo</p>
+                                <p class="fw-bold fs-5">Jatuh Tempo</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">:
+                                <p class="fw-bold fs-5">:
                                     <?php echo $JumlahJatuhTempo ?>
                                 </p>
                             </div>
@@ -54,10 +50,10 @@ if (!function_exists('changeDateFormat')) {
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="dataPencarian">Nominal</p>
+                                <p class="fw-bold fs-5">Nominal</p>
                             </div>
                             <div class="col-6">
-                                <p class="dataPencarian">: Rp.
+                                <p class="fw-bold fs-5">: Rp.
                                     <?php echo number_format($NominalJatuhTempo, 0, ',', '.') ?>
                                 </p>
                             </div>
@@ -88,13 +84,14 @@ if (!function_exists('changeDateFormat')) {
                             <table id="mytable" class="table table-bordered responsive nowrap" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th width="10%">No</th>
-                                        <th width="20%">Nama</th>
-                                        <th width="20%" class="text-center">Tanggal</th>
-                                        <th width="20%" class="text-center">Paket</th>
-                                        <th width="20%" class="text-center">Tarif</th>
-                                        <th width="20%" class="text-center">Status</th>
-                                        <th width="10%" class="text-center">Opsi</th>
+                                        <th width="5%">No</th>
+                                        <th width="5%" class="text-center">Tanggal</th>
+                                        <th width="20%">Nama PPPOE</th>
+                                        <th width="20%">Nama Customer</th>
+                                        <th width="10%" class="text-center">Paket</th>
+                                        <th width="10%" class="text-center">Tarif</th>
+                                        <th width="10%" class="text-center">Status</th>
+                                        <th width="5%" class="text-center">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
