@@ -70,7 +70,6 @@ class C_DataJatuhTempo extends CI_Controller
             $StatusMikrotik = $dataCustomer['disabled'] == 'true';
 
             $row = array();
-            $row = array();
             $row[] = '<div class="text-center">' . ++$no . '</div>';
             $row[] = '<div class="text-center">' . ($GrossAmount ? 'Tanggal ' . $dataCustomer['tanggal'] : changeDateFormat('d-m-Y / H:i:s', $dataCustomer['transaction_time'])) . '</div>';
             $row[] = $dataCustomer['name_pppoe'];
