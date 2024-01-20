@@ -61,6 +61,9 @@ class C_TerminasiPelanggan extends CI_Controller
             $row[] = '<div class="text-center">' . changeDateFormat('d-m-Y', $dataCustomer['stop_date']) . '</div>';
             $row[] = '<div class="text-center">' . ($StatusMikrotik ? '<span class="badge bg-danger">DISABLED</span>' : '<span class="badge bg-success">ENABLE</span>') . '</div>';
             $row[] = strtoupper($dataCustomer['keterangan']);
+            $row[] = $dataCustomer['address'];
+            $row[] = $dataCustomer['phone'];
+            $row[] = $dataCustomer['nama_area'];
 
             $row[] =
                 '<div class="text-center">
