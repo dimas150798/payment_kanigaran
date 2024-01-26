@@ -29,7 +29,7 @@
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-sm-6">
                                         <label for="name" class="form-label" style="font-weight: bold;"> Nama DP : <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nama_dp" value="<?php echo $data['name'] ?>" placeholder="Masukkan nama area...">
+                                        <input type="text" class="form-control" name="nama_dp" value="<?php echo $data['nama_dp'] ?>" placeholder="Masukkan nama area...">
                                         <div class="bg-danger">
                                             <small class="text-white"><?php echo form_error('nama_dp'); ?></small>
                                         </div>
