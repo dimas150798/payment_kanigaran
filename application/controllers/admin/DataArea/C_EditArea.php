@@ -33,11 +33,13 @@ class C_EditArea extends CI_Controller
         //mengambil data post pada view 
         $id           = $this->input->post('id');
         $name         = $this->input->post('name');
+        $nama_dp      = $this->input->post('nama_dp');
 
         //menyimpan data ke dalam array
         $dataArea = array(
             'id'          => $id,
             'name'        => $name,
+            'nama_dp'     => $nama_dp,
             'updated_at'  => date('Y-m-d H:i:s', time())
         );
 
@@ -59,23 +61,13 @@ class C_EditArea extends CI_Controller
             $this->load->view('admin/DataArea/V_EditArea', $data);
             $this->load->view('template/V_FooterArea', $data);
         } else {
-            if ($name == $checkDuplicate->name) {
+            $this->M_CRUD->updateData('area', $dataArea, $idArea);
 
-                // Notifikasi Duplicate Name 
-                $this->session->set_flashdata('DuplicateName_icon', 'error');
-                $this->session->set_flashdata('DuplicateName_title', 'Gagal Edit Area');
-                $this->session->set_flashdata('DuplicateName_text', 'Nama area sudah ada');
+            // Notifikasi Edit Berhasil
+            $this->session->set_flashdata('Edit_icon', 'success');
+            $this->session->set_flashdata('Edit_title', 'Edit Data Berhasil');
 
-                redirect('admin/DataArea/C_DataArea');
-            } else {
-                $this->M_CRUD->updateData('area', $dataArea, $idArea);
-
-                // Notifikasi Edit Berhasil
-                $this->session->set_flashdata('Edit_icon', 'success');
-                $this->session->set_flashdata('Edit_title', 'Edit Data Berhasil');
-
-                redirect('admin/DataArea/C_DataArea');
-            }
+            redirect('admin/DataArea/C_DataArea');
         }
     }
 }

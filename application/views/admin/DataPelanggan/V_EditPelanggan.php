@@ -117,13 +117,13 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-lg-4 mt-4">
-                                        <label for="id_area" class="form-label fw-bold fs-5"> Kode DP dan Area : <span class="text-danger">*</span></label>
+                                        <label for="id_area" class="form-label fw-bold fs-5"> Nama DP dan Kode DP : <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-secondary"><i class="bi bi-bookmarks-fill text-white"></i></span>
                                             <select id="id_area" name="id_area" class="form-control fw-bold fs-6" required>
                                                 <option value="">Pilih Area :</option>
                                                 <?php foreach ($DataArea as $dataArea) : ?>
-                                                    <option value="<?php echo $dataArea['id'] ?>" <?= $data['id_area'] == $dataArea['id'] ? "selected" : null ?>><?php echo $dataArea['name'] ?>
+                                                    <option value="<?php echo $dataArea['id'] ?>" <?= $data['id_area'] == $dataArea['id'] ? "selected" : null ?>><?php echo $dataArea['nama_dp'] . '/' . $dataArea['name'] ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>

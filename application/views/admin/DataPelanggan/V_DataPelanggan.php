@@ -71,8 +71,8 @@ if (!function_exists('changeDateFormat')) {
                                         <th class="text-center" width="15%">Phone</th>
                                         <th class="text-center" width="10%">Nama Paket</th>
                                         <th class="text-center" width="10%">Date Registrasi</th>
-                                        <th class="text-center" width="15%">sales</th>
                                         <th class="text-center" width="10%">Kode DP</th>
+                                        <th class="text-center" width="15%">sales</th>
                                         <th class="text-center" width="10%">Status</th>
                                         <th class="text-center" width="5%">Action</th>
                                     </tr>

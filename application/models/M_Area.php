@@ -5,7 +5,7 @@ class M_Area extends CI_Model
     // Menampilkan Data Area
     public function DataArea()
     {
-        $query   = $this->db->query("SELECT id, name
+        $query   = $this->db->query("SELECT id, name, nama_dp
                 FROM area
                 ORDER BY name ASC");
 
@@ -13,7 +13,7 @@ class M_Area extends CI_Model
     }
     public function EditArea($id_area)
     {
-        $query   = $this->db->query("SELECT id, name
+        $query   = $this->db->query("SELECT id, name, nama_dp
         FROM area
         WHERE id = '$id_area'
         ORDER BY name ASC");
@@ -24,7 +24,7 @@ class M_Area extends CI_Model
     // Check data area
     public function CheckDuplicateArea($nama_area)
     {
-        $this->db->select('name, id');
+        $this->db->select('name, id, nama_dp');
         $this->db->where('name', $nama_area);
 
         $this->db->limit(1);

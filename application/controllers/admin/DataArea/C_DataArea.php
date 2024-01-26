@@ -43,6 +43,7 @@ class C_DataArea extends CI_Controller
         foreach ($result as $dataArea) {
             $row = array();
             $row[] = ++$no;
+            $row[] = $dataArea['nama_dp'];
             $row[] = $dataArea['name'];
             $row[] =
                 '<div class="text-center">

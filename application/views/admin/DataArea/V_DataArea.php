@@ -35,7 +35,8 @@
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="30%">Nama Area</th>
+                                        <th width="30%">Nama DP</th>
+                                        <th width="30%">Kode DP</th>
                                         <th width="5%" class="text-center">Opsi</th>
                                     </tr>
                                 </thead>

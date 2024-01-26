@@ -8,7 +8,7 @@ class M_Pelanggan extends CI_Model
         $query   = $this->db->query("SELECT client.id, client.code_client, client.phone, client.name, client.id_paket, 
             client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
             DAY(client.start_date) as tanggal, client.start_date, client.stop_date, client.id_area, client.description, client.id_sales, client.disabled,
-            area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket
+            area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket, area.nama_dp
             
             FROM client
             

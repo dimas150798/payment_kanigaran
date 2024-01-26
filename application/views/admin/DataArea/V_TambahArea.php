@@ -26,7 +26,14 @@
 
                             <div class="row mt-3 justify-content-center">
                                 <div class="col-sm-6">
-                                    <label for="name" class="form-label" style="font-weight: bold;"> Nama Area : <span class="text-danger">*</span></label>
+                                    <label for="name" class="form-label" style="font-weight: bold;"> Nama DP : <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="nama_dp" value="" placeholder="Masukkan nama area...">
+                                    <div class="bg-danger">
+                                        <small class="text-white"><?php echo form_error('nama_dp'); ?></small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="name" class="form-label" style="font-weight: bold;"> Kode DP : <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="name" value="" placeholder="Masukkan nama area...">
                                     <div class="bg-danger">
                                         <small class="text-white"><?php echo form_error('name'); ?></small>
