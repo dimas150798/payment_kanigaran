@@ -168,6 +168,11 @@
 		$('#mytable').DataTable({
 			"autoFill": true,
 			"pagingType": 'numbers',
+			"searching": true,
+			"paging": true,
+			"stateSave": true,
+			"processing": true,
+			"serverside": true,
 			"ajax": {
 				"url": "<?= base_url('admin/DataArea/C_DataArea/GetDataAjax'); ?>",
 			},
