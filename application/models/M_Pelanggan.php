@@ -8,7 +8,7 @@ class M_Pelanggan extends CI_Model
         $query   = $this->db->query("SELECT client.id, client.code_client, client.phone, client.name, client.id_paket, 
             client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
             DAY(client.start_date) as tanggal, client.start_date, client.stop_date, client.id_area, client.description, client.id_sales, client.disabled,
-            area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket, area.nama_dp
+            area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket, area.nama_dp, area.name
             
             FROM client
             
@@ -270,5 +270,49 @@ class M_Pelanggan extends CI_Model
 
         // Memeriksa hasil query
         return $query->num_rows() > 0;
+    }
+
+    // Menampilkan Kode DP Data Pelanggan
+    public function DP_Pelanggan($nama_dp)
+    {
+        $query   = $this->db->query("SELECT client.id, client.code_client, client.phone, client.name, client.id_paket, 
+                  client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
+                  DAY(client.start_date) as tanggal, client.start_date, client.stop_date, client.id_area, client.description, client.id_sales, client.disabled,
+                  area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket
+                  
+                  FROM client
+                  
+                  LEFT JOIN area ON client.id_area = area.id
+                  LEFT JOIN sales ON client.id_sales = sales.id
+                  LEFT JOIN paket ON client.id_paket = paket.id
+      
+                  WHERE client.stop_date IS NULL AND area.name = '$nama_dp'
+                  
+                  GROUP BY client.name_pppoe
+                  ORDER BY client.name_pppoe ASC");
+
+        return $query->result_array();
+    }
+
+    // Menampilkan DP Jumlah Pelanggan
+    public function DP_JumlahPelanggan($nama_dp)
+    {
+        $query   = $this->db->query("SELECT client.id, client.code_client, client.phone, client.name, client.id_paket, 
+              client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
+              DAY(client.start_date) as tanggal, client.stop_date, client.id_area, client.description, client.id_sales,
+              area.name as nama_area, sales.name as nama_sales, paket.name as nama_paket
+              
+              FROM client
+              
+              LEFT JOIN area ON client.id_area = area.id
+              LEFT JOIN sales ON client.id_sales = sales.id
+              LEFT JOIN paket ON client.id_paket = paket.id
+      
+              WHERE client.stop_date IS NULL AND area.name = '$nama_dp'
+              
+              GROUP BY client.name_pppoe
+              ORDER BY client.name_pppoe ASC");
+
+        return $query->num_rows();
     }
 }

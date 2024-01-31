@@ -48,6 +48,12 @@ class C_FormLogin extends CI_Controller
                 $this->session->set_userdata('email', $checkDataLogin->email_login);
 
                 redirect('admin/C_DashboardAdmin');
+            } elseif ($email_login == $checkDataLogin->email_login && $checkDataLogin->id_akses == 3) {
+
+                // Setting session login email
+                $this->session->set_userdata('email', $checkDataLogin->email_login);
+
+                redirect('user/C_DashboardUser');
             } else {
                 // Notifikasi gagal login
                 $this->session->set_flashdata('LoginGagal_icon', 'error');

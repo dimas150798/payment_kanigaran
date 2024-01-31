@@ -200,7 +200,7 @@ class C_ExportExcel extends CI_Controller
             $sheet->getCell('I' . $row_number)->setValueExplicit($row['address'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet->getCell('J' . $row_number)->setValueExplicit($row['email'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet->setCellValue('K' . $row_number, $row['start_date']);
-            $sheet->setCellValue('L' . $row_number, $row['nama_area']);
+            $sheet->setCellValue('L' . $row_number, $row['nama_dp'] . '/' . $row['nama_area']);
             $sheet->setCellValue('M' . $row_number, $row['nama_sales']);
             $sheet->setCellValue('N' . $row_number, $row['id_paket']);
             $sheet->setCellValue('O' . $row_number, $row['id_area']);
