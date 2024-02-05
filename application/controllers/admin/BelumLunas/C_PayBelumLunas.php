@@ -49,7 +49,7 @@ class C_PayBelumLunas extends CI_Controller
             $Bulan = $datetime->format("m"); // Untuk bulan (format m untuk bulan dua digit)
             $Tanggal = $datetime->format("d"); // Untuk tanggal (format d untuk tanggal dua digit)
 
-            $data['Tanggal'] = $Tahun . '-' . $Bulan . '-' . $CheckPelanggan->JatuhTempo . ' ' . date("H:i:s");
+            $data['Tanggal'] = $Tahun . '-' . $Bulan . '-' . $Tanggal . ' ' . date("H:i:s");
 
             $data['DataPelanggan']  = $this->M_BelumLunas->Payment($id_customer);
 
