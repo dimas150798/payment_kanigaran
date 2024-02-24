@@ -192,7 +192,7 @@ class MikrotikModel extends CI_Model
     public function TerminasiAuto($bulan, $tahun, $tanggalAkhir, $tanggal)
     {
         // Terminasi Bulan 2 (Februari)
-        if ($bulan == 2 && $tanggal == 28) {
+        if ($bulan == 02 && $tanggal == 28 or $bulan == 02 && $tanggal == 29) {
             $getData = $this->db->query("SELECT client.id, client.code_client, client.phone, client.name, client.id_paket, 
             client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
             DAY(client.start_date) as tanggal, client.stop_date, client.id_area, client.description, client.id_sales,

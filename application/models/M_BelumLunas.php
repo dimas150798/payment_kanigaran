@@ -158,7 +158,7 @@ class M_BelumLunas extends CI_Model
         $bulan              = $convertDate[1];
         $tanggal            = $convertDate[2];
 
-        if ($bulan == 02 && $tanggal == 28) {
+        if ($bulan == 02 && $tanggal == 28 and $bulan == 02 && $tanggal == 29) {
             $query   = $this->db->query("SELECT 
                 client.id, client.code_client, client.phone, client.name,  
                 client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
@@ -219,7 +219,7 @@ class M_BelumLunas extends CI_Model
         $bulan              = $convertDate[1];
         $tanggal            = $convertDate[2];
 
-        if ($bulan == 02 && $tanggal == 28) {
+        if ($bulan == 02 && $tanggal == 28 or $bulan == 02 && $tanggal == 29) {
             $query   = $this->db->query("SELECT 
                 client.id, client.code_client, client.phone, client.name,  
                 client.name_pppoe, client.password_pppoe, client.id_pppoe, client.address, client.email, 
@@ -279,7 +279,7 @@ class M_BelumLunas extends CI_Model
         $bulan              = $convertDate[1];
         $tanggal            = $convertDate[2];
 
-        if ($bulan == 02 && $tanggal == 28) {
+        if ($bulan == 02 && $tanggal == 28 or $bulan == 02 && $tanggal == 29) {
             $result   = $this->db->query("SELECT 
                 SUM(paket.price) AS harga_paket
         
