@@ -57,7 +57,7 @@ class C_DataPelanggan extends CI_Controller
 
             $row = array();
             $row[] = '<div class="text-center">' . ++$no . '</div>';
-            $row[] = $dataCustomer['name'];
+            $row[] = $dataCustomer['nama_customer'];
             $row[] = $dataCustomer['name_pppoe'];
             $row[] = '<div class="text-center">' . $dataCustomer['phone'] . '</div>';
             $row[] = '<div class="text-center">' . $dataCustomer['nama_paket'] . '</div>';
