@@ -6,8 +6,9 @@ class M_Paket extends CI_Model
     public function DataPaket()
     {
         $query   = $this->db->query("SELECT id, name, price, description
-                FROM paket
-                ORDER BY id ASC");
+        FROM paket 
+        WHERE description IN ('5 Mbps', '10 Mbps', '20 Mbps', '30 Mbps', '50 Mbps', '100 Mbps', '25 Mbps + TV', '70 Mbps + TV', 'Free')
+        ORDER BY id ASC");
 
         return $query->result_array();
     }
